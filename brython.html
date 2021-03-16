@@ -1,0 +1,55 @@
+<html>
+    <head></head>
+<body onload="brython()">
+    <button id="alert-btn">Click Me</button>
+    <h1 id="hello"></h1>
+    <h2 id="greet"> Hello {name}</h2>
+    <input id="text" type="text" placeholder="Enter Something">
+    <span id="output"></span>
+    <button id="joke">joke</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.1/brython.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.1/brython_stdlib.js"></script>
+    <script id='script0' type="text/python">
+        from browser import document, console, alert
+        def show(e):
+            console.log("Alert me")
+        document['alert-btn'].bind('click',show)
+        document['hello'] <= "Hello World"
+    </script>
+
+    <script id ="script1" type="text/python">
+        from browser import document, console, alert
+        def show_text(e):
+            document['output'].textContent=e.target.value
+        document['text'].bind('input',show_text)
+    </script>
+
+    <script id ="script2" type="text/python">
+        from browser import document
+        from browser.template import Template
+        Template(document['greet']).render(name='Praveen')
+    </script>
+
+    <script type="text/python" id="script3">
+        from browser import document, ajax, console
+        import json
+        
+        url = "https://api.chucknorris.io/jokes/random/"
+
+        def on_complete(req):
+            data = json.loads(req.responseText)
+            joke = data['value']
+            document['joke'].text = joke
+
+        def get_joke(e):
+            req = ajax.ajax()
+            req.open('GET',url, True)
+            req.bind('complete',on_complete)
+            document['joke'].text = 'Loading...'
+            req.send()
+        
+        document['joke'].bind('click',get_joke)
+    </script>
+</body>
+</html>
