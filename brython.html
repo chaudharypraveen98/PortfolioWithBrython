@@ -1,15 +1,39 @@
 <html>
-    <head></head>
+    <head>
+        <title>Brython</title>
+        <style>
+            #rotate-box{
+                background-color: blue;
+                width: 20px;
+                height: 20px;
+            }
+        </style>
+    </head>
 <body onload="brython()">
-    <button id="alert-btn">Click Me</button>
+    <button id="alert-btn">Click Me to get alert</button>
     <h1 id="hello"></h1>
     <h2 id="greet"> Hello {name}</h2>
     <input id="text" type="text" placeholder="Enter Something">
     <span id="output"></span>
     <button id="joke">joke</button>
+    <input type="file" id="file-upload">
+    <textarea id="file-text" cols="60" rows="10"></textarea>
+    <div class="box">
+        <button id="box-btn">Rotate the box</button>
+        <div id="rotate-box"></div>
+    </div>
+
+    <div id="input-storage">
+        <input type="text" id="item-input" placeholder="Enter list item">
+        <h2>Items are <span id="item"></span></h2>
+        <buttom id="add-item">Add Item</buttom>
+        <button id="remove-item">Remove Item</button>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.1/brython.js"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.1/brython_stdlib.js"></script>
+    
+    <!-- script to get alert -->
     <script id='script0' type="text/python">
         from browser import document, console, alert
         def show(e):
@@ -18,21 +42,24 @@
         document['hello'] <= "Hello World"
     </script>
 
+    <!-- Get value from input box -->
     <script id ="script1" type="text/python">
         from browser import document, console, alert
         def show_text(e):
-            document['output'].textContent=e.target.value
+            document['output'].textContent = e.target.value
         document['text'].bind('input',show_text)
     </script>
 
+    <!-- How to use variable -->
     <script id ="script2" type="text/python">
         from browser import document
         from browser.template import Template
         Template(document['greet']).render(name='Praveen')
     </script>
 
+    <!-- How to make Ajax Call -->
     <script type="text/python" id="script3">
-        from browser import document, ajax, console
+        from browser import document, ajax
         import json
         
         url = "https://api.chucknorris.io/jokes/random/"
@@ -50,6 +77,69 @@
             req.send()
         
         document['joke'].bind('click',get_joke)
+    </script>
+
+    <!-- Script to read text from the uploaded file -->
+    <script type="text/python" id="script4">
+        from browser import document, window
+
+        def file_read(e):
+            def onload(e):
+                document['file-text'].value = e.target.result
+            
+            file = document['file-upload'].files[0]
+            
+            # initialised the reader instance
+            reader = window.FileReader.new()
+
+            # giving file as a parameter
+            reader.readAsText(file)
+
+            # binding the onload function with load event of file
+            reader.bind('load',onload)
+
+        document['file-upload'].bind('input',file_read)
+    </script>
+
+    <!-- Script to rotate the box -->
+    <script type="text/python" id="script5">
+        from browser import document, window
+
+        box = document['rotate-box']
+        angle = 10
+
+        def transform(e):
+            global angle
+            box.style.transform = f"rotate({angle}deg)"
+            angle +=10
+        
+        document['box-btn'].bind('click',transform)
+    </script>
+
+    <!-- How to use the local Storage -->
+    <script type="text/python" id="script6">
+        from browser import document, window
+
+        # Intialising the local storage
+        storage = window.localStorage
+
+        # Checking if has the item key
+        if storage.getItem('item'):
+            document['item'] <= storage.getItem('item')
+        
+        # function to add the item to the local storage
+        def add_item(e):
+            item = document['item-input'].value
+            storage.setItem('item',item)
+            document['item'].textContent = item
+        
+        # function to remove item from the local storage
+        def remove_item(e):
+            storage.removeItem('item')
+            document['item'].textContent = ""
+        
+        document['add-item'].bind('click',add_item)
+        document['remove-item'].bind('click',remove_item)
     </script>
 </body>
 </html>
