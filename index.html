@@ -34,6 +34,34 @@
         <div id="ProjectContainer">
         </div>
     </div>
+    <table class="charts-css bar show-heading show-labels data-spacing-5" id="my-chart">
+        <caption> Github Project Languages </caption>
+        <thead>
+            <tr>
+                <th scope="col">Languages</th>
+                <th scope="col">Projects Made</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Python</th>
+                <td style="--size: calc( 26 / 30 )">26</td>
+            </tr>
+            <tr>
+                <th scope="row">HTML</th>
+                <td style="--size: calc( 13 / 30 )">13</td>
+            </tr>
+            <tr>
+                <th scope="row">JavaScript</th>
+                <td style="--size: calc( 8 / 30 )">8</td>
+            </tr>
+            <tr>
+                <th scope="row">CSS</th>
+                <td style="--size: calc( 6 / 60 )">6</td>
+            </tr>
+        </tbody>
+    </table>
     
     <!-- Footer Section -->
     <footer class="profile-footer">
@@ -43,7 +71,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.1/brython.js"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.1/brython_stdlib.js"></script>
-
+    
+    <!-- Python script -->
     <script id ="script0" type="text/python">
         from browser import document,ajax,console,window,html
         from browser.template import Template

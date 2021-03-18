@@ -11,6 +11,7 @@ This project tries the implement the basic web assembly toolbar to build portfol
 
 #### Page Source : - 
 <img src='brython_source.JPG'>
+It contains the python in the page source code.
 
 
 ## Brython Basic Usage
