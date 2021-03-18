@@ -6,6 +6,8 @@ This project tries the implement the basic web assembly toolbar to build portfol
 2. Uses variable to maniplate the dom
 3. Clean code.
 
+#### Web Preview : -
+<img src="brython.JPG"> 
 
 
 ## Brython Basic Usage
