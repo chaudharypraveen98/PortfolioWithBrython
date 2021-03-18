@@ -1,5 +1,5 @@
 ## Portfolio With Brython ( Web Assembly )
-This project tries the implement the basic web assembly toolbar to build with page with python.
+This project tries the implement the basic web assembly toolbar to build portfolio page with python.
 
 #### Features : -
 1. Great UI

@@ -1,0 +1,118 @@
+<html>
+<head>
+    <title>Praveen Chaudhary</title>
+    <meta name="title" content="Personal Portfolio Page">
+    <meta name="description" content="This is the personal portfolio page which contains all the projects. I am a Full Stack Developer, Rest Api Developer, Data Analsyt">
+    <meta name="keywords" content="chaudharypraveen98,Praveen Chaudhary,devilunknown">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="30 days">
+    <meta name="author" content="@chaudharypraveen98">
+    <meta name="twitter:title" content="Praveen Chaudhary">
+    <meta name="twitter:description" content=" Personal Portfolio Page">
+    <meta name="twitter:image" content="https://pbs.twimg.com/profile_images/1366311960468332546/EidYygUt_400x400.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:title" content="Praveen Chaudhary - a Full Stack Developer" />
+    <meta property="og:url" content="https://www.linkedin.com/in/chaudharypraveen98/" />
+    <meta property="og:description" content="This is the personal portfolio page which contains all the projects. I am a Full Stack Developer, Rest Api Developer, Data Analsyt" />
+    <meta property="og:image" content="https://media-exp1.licdn.com/dms/image/C5603AQHRamUaMrdA9g/profile-displayphoto-shrink_400_400/0/1597315489941?e=1621468800&v=beta&t=aikraCXCJhAqjKuUtFdgpKcv6Xi-3bHXuAdtGt_M0dk" />
+    <meta property="og:type" content="Portfolio" />
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
+</head>
+<body onload="brython()">
+
+    <!-- banner section -->
+    <div class="banner">
+        <h1 id="portfolio-person">Hi, I am {name}</h1>
+        <h3 id="profession">{first_profession} and {second_profession}</h3>
+    </div>
+
+    <!-- Project Section -->
+    <div class="projectSection">
+        <div id="ProjectContainer">
+        </div>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer class="profile-footer">
+        All copyrights reserved for @{company}. Made with  by {webCreator}
+    </footer>
+        
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.1/brython.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.1/brython_stdlib.js"></script>
+
+    <script id ="script0" type="text/python">
+        from browser import document,ajax,console,window,html
+        from browser.template import Template
+        import json
+
+        # Intialising the local storage
+        storage = window.localStorage
+
+        # Make changes Here Only
+        your_name = 'Praveen Chaudhary'
+        first_profession = 'Full Stack Developer'
+        second_profession = 'Data Analsyt'
+        company_name = 'BinaryBeast'
+        web_creator = 'Praveen Chaudhary'
+        project_container = document['ProjectContainer']
+        footer_element = document.select('.profile-footer')[0]
+
+        profile_endpoint = "https://raw.githubusercontent.com/chaudharypraveen98/PortfolioWithGatsby/master/src/data/GithubProfile.json"
+
+        def add_project(project_list):
+            console.log(project_list[0])
+            for project in project_list:
+                title= html.H1(project['title'],Class="singleProjectTitle")
+                if project['desc']!=None:
+                    project_desc= html.P(project['desc'],Class="project-desc")
+                else:
+                    project_desc= html.P("This project is made by Praveen Chaudhary",Class="project-desc")
+                if project['programming_language'] !=None:
+                    programming_language= html.H3(project['programming_language'],Class="programming-language")
+                else:
+                    programming_language= html.H3("Html-Css-Js",Class="programming-language")
+
+                projectNumber= html.P(project['id'],Class="projectNumber")
+                project_container <= html.DIV(title+projectNumber+project_desc+programming_language,Class="singleProject")
+
+        def add_project_from_localStorage(project_list):
+            console.log(project_list[0])
+            for project in project_list:
+                title= html.H1(project['title'].value,Class="singleProjectTitle")
+                if project['desc'].value!=None:
+                    project_desc= html.P(project['desc'].value,Class="project-desc")
+                else:
+                    project_desc= html.P("This project is made by Praveen Chaudhary",Class="project-desc")
+                if project['programming_language'].value !=None:
+                    programming_language= html.H3(project['programming_language'].value,Class="programming-language")
+                else:
+                    programming_language= html.H3("Html-Css-Js",Class="programming-language")
+
+                projectNumber= html.P(project['id'].value,Class="projectNumber")
+                project_container <= html.DIV(title+projectNumber+project_desc+programming_language,Class="singleProject")
+                        
+        def on_complete(req):
+            project_list = json.loads(req.responseText)
+            storage['projects']=project_list
+            add_project(project_list)            
+
+        def get_project():
+            req = ajax.ajax()
+            req.open('GET',profile_endpoint, True)
+            req.bind('complete',on_complete)
+            #document['joke'].text = 'Loading...'
+            req.send()
+
+        get_project()
+        
+
+        Template(document['portfolio-person']).render(name=your_name)
+        Template(document['profession']).render(first_profession=first_profession,second_profession=second_profession)
+        Template(footer_element).render(company=company_name,webCreator=web_creator)
+    </script>
+</body>
+</html>
