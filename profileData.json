@@ -1,0 +1,90 @@
+[
+    {
+      "id": 1,
+      "title": "quotes-everywhere",
+      "desc": "This project will shows the quotes. It has a collection of 60 quotes in initial release. It is bootstrapped with create-next-app.",
+      "topics": ["nextjs"],
+      "programming_language": "JavaScript",
+      "stars": "1",
+      "forks": null,
+      "last_updated": "21 hours ago",
+      "link": "https://github.com/chaudharypraveen98/quotes-everywhere"
+    },
+    {
+      "id": 2,
+      "title": "TicketVendor",
+      "desc": "This Rest api will manages all the tickets for the shows, movies and concerts. This API is built on the top of the django rest framework.",
+      "topics": ["python", "django", "django-rest-framework"],
+      "programming_language": "Python",
+      "stars": "1",
+      "forks": null,
+      "last_updated": "6 days ago",
+      "link": "https://github.com/chaudharypraveen98/TicketVendor"
+    },
+    {
+      "id": 3,
+      "title": "TestAutomation",
+      "desc": "This test automation is based on Robot Framework with the selenium library.",
+      "topics": ["robot-framework", "test-automation", "python"],
+      "programming_language": "HTML",
+      "stars": "2",
+      "forks": null,
+      "last_updated": "7 days ago",
+      "link": "https://github.com/chaudharypraveen98/TestAutomation"
+    },
+    {
+      "id": 4,
+      "title": "PokedexWithGraphene",
+      "desc": "This project is build on the top of the django and the graphene(A query language for API). We have used the django-extension to runscript which loads data from json.",
+      "topics": ["graphql", "django", "ajax"],
+      "programming_language": "Python",
+      "stars": "1",
+      "forks": null,
+      "last_updated": "9 days ago",
+      "link": "https://github.com/chaudharypraveen98/PokedexWithGraphene"
+    },
+    {
+      "id": 5,
+      "title": "SpotifyApi",
+      "desc": "It is a class based client Api. It makes multiple get request with the spotify to search songs, album, artist and the tracks..",
+      "topics": ["python", "spotify-api"],
+      "programming_language": "Python",
+      "stars": "1",
+      "forks": null,
+      "last_updated": "12 days ago",
+      "link": "https://github.com/chaudharypraveen98/SpotifyApi"
+    },
+    {
+      "id": 6,
+      "title": "Portforall",
+      "desc": "This project will make user's portfolio. These portfolio's are dynamic with tons of templates and gradient colours which changes on every refresh. This project is backend with django framework.",
+      "topics": ["css", "html", "django", "python", "javascript"],
+      "programming_language": "JavaScript",
+      "stars": "1",
+      "forks": null,
+      "last_updated": "13 days ago",
+      "link": "https://github.com/chaudharypraveen98/Portforall"
+    },
+    {
+      "id": 7,
+      "title": "Shoty",
+      "desc": "Music website based on the top on Django framework. It is a dynamic website with responsive behaviour. It has a login feature and CRUD (create,read,update and the delete) feaures.",
+      "topics": ["html", "css", "js", "jquery", "django", "python"],
+      "programming_language": "HTML",
+      "stars": "3",
+      "forks": "3",
+      "last_updated": "15 days ago",
+      "link": "https://github.com/chaudharypraveen98/Shoty"
+    },
+    {
+      "id": 8,
+      "title": "chaudharypraveen98",
+      "desc": null,
+      "topics": null,
+      "programming_language": null,
+      "stars": null,
+      "forks": null,
+      "last_updated": "15 days ago",
+      "link": "https://github.com/chaudharypraveen98/chaudharypraveen98"
+    }
+]
