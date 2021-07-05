@@ -93,7 +93,6 @@
         profile_endpoint = "https://raw.githubusercontent.com/chaudharypraveen98/PortfolioWithGatsby/master/src/data/GithubProfile.json"
 
         def add_project(project_list):
-            console.log(project_list[0])
             for project in project_list:
                 title= html.H1(project['title'],Class="singleProjectTitle")
                 if project['desc']!=None:
@@ -106,22 +105,6 @@
                     programming_language= html.H3("Html-Css-Js",Class="programming-language")
 
                 projectNumber= html.P(project['id'],Class="projectNumber")
-                project_container <= html.DIV(title+projectNumber+project_desc+programming_language,Class="singleProject")
-
-        def add_project_from_localStorage(project_list):
-            console.log(project_list[0])
-            for project in project_list:
-                title= html.H1(project['title'].value,Class="singleProjectTitle")
-                if project['desc'].value!=None:
-                    project_desc= html.P(project['desc'].value,Class="project-desc")
-                else:
-                    project_desc= html.P("This project is made by Praveen Chaudhary",Class="project-desc")
-                if project['programming_language'].value !=None:
-                    programming_language= html.H3(project['programming_language'].value,Class="programming-language")
-                else:
-                    programming_language= html.H3("Html-Css-Js",Class="programming-language")
-
-                projectNumber= html.P(project['id'].value,Class="projectNumber")
                 project_container <= html.DIV(title+projectNumber+project_desc+programming_language,Class="singleProject")
                         
         def on_complete(req):
